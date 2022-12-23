@@ -21,6 +21,13 @@ spec:
         env:
         - name: GO_ENVIRONMENT
           value: #{GO_ENVIRONMENT}#
+        volumeMounts:
+        - name: go
+          mountPath: /var/opt/go
+      volumes:
+      - name: go
+        hostPath:
+          path: /root/default/go
 ---
 apiVersion: v1
 kind: Service
@@ -33,7 +40,7 @@ spec:
       port: #{TARGET_PORT}# 
       targetPort: 4444
  selector:
-     bb: go 
+     bb: etms-api-auth 
  type: NodePort
 ---
 apiVersion: v1
@@ -43,19 +50,19 @@ metadata:
   labels:
     type: local
 spec:
-  storageClassName: 'go'
+  storageClassName: 'manual'
   capacity:
     storage: 4Gi
   accessModes:
     - ReadWriteOnce
   hostPath:
     path: "/root/go"
+    type: DirectoryOrCreate
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: go-data
-  namespace: default
 spec:
   storageClassName: manual
   accessModes:
