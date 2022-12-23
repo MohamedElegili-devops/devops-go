@@ -49,7 +49,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/root/#{KUBE_NAMESPACE}#/go"
+    path: "/root/go"
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
