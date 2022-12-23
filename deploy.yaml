@@ -16,6 +16,8 @@ spec:
       containers:
       - name: go-container
         image: ttl.sh/goportal:#{Release.Artifacts.build.BuildId}#
+        ports:
+        - containerPort: 4444
         env:
         - name: GO_ENVIRONMENT
           value: #{GO_ENVIRONMENT}#
@@ -26,13 +28,13 @@ metadata:
   name: go-service
   namespace: #{KUBE_NAMESPACE}#
 spec:
-  type: NodePort
-  selector:
-    bb: go
-  ports:
-  - port: 4444
-    targetPort: 4444
-    nodePort: #{EXPOSED_PORT}#
+ ports:
+    - protocol: TCP
+      port: #{TARGET_PORT}# 
+      targetPort: 4444
+ selector:
+     bb: etms-api-auth 
+ type: NodePort
 ---
 apiVersion: v1
 kind: PersistentVolume
