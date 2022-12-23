@@ -27,7 +27,7 @@ spec:
       volumes:
       - name: go
         hostPath:
-          path: /root/default/go
+          path: /root/go/go
 ---
 apiVersion: v1
 kind: Service
@@ -40,7 +40,7 @@ spec:
       port: #{TARGET_PORT}# 
       targetPort: 4444
  selector:
-     bb: etms-api-auth 
+     bb: go 
  type: NodePort
 ---
 apiVersion: v1
