@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: go-container
-        image: ttl.sh/goportal:#{Release.Artifacts.goportal.BuildId}#
+        image: ttl.sh/goportal:#{Release.Artifacts.build.BuildId}#
         env:
         - name: GO_ENVIRONMENT
           value: #{GO_ENVIRONMENT}#
