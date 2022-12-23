@@ -41,8 +41,8 @@ spec:
     - protocol: TCP
       port: 4444 
       targetPort: 4444
- clusterIP: 10.3.20.211
- type: LoadBalancer
+  clusterIP: 10.3.20.211
+  type: LoadBalancer
 status:
   loadBalancer:
     ingress:
