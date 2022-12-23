@@ -55,6 +55,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: go-data
+  namespace: default
 spec:
   storageClassName: manual
   accessModes:
