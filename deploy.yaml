@@ -49,7 +49,6 @@ spec:
   hostPath:
     path: "/root/#{KUBE_NAMESPACE}#/go"
 ---
-
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
