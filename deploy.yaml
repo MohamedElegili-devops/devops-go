@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-deployment
+  namespace: #{KUBE_NAMESPACE}#
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      bb: go
+  template:
+    metadata:
+      labels:
+        bb: go
+    spec:
+      containers:
+      - name: go-container
+        image: ttl.sh/goportal:#{Release.Artifacts.goportal.BuildId}#
+        env:
+        - name: GO_ENVIRONMENT
+          value: #{GO_ENVIRONMENT}#
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-service
+  namespace: #{KUBE_NAMESPACE}#
+spec:
+  type: NodePort
+  selector:
+    bb: go
+  ports:
+  - port: 4444
+    targetPort: 4444
+    nodePort: #{EXPOSED_PORT}#
