@@ -33,3 +33,32 @@ spec:
   - port: 4444
     targetPort: 4444
     nodePort: #{EXPOSED_PORT}#
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: go-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: 'go'
+  capacity:
+    storage: 4Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/root/#{KUBE_NAMESPACE}#/go"
+---
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: go-data
+spec:
+  storageClassName: manual
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 4Gi
+    
