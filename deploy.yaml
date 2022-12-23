@@ -30,8 +30,8 @@ spec:
   selector:
     bb: go
   ports:
-  - port: 4444
-    targetPort: 4444
+  - port: 30001
+    targetPort: 80
     nodePort: #{EXPOSED_PORT}#
 ---
 apiVersion: v1
