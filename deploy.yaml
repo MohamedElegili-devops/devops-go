@@ -37,7 +37,7 @@ metadata:
 spec:
   selector:
     app.kubernetes.io/name: go
- ports:
+  ports:
     - protocol: TCP
       port: 4444 
       targetPort: 4444
