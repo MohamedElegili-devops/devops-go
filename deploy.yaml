@@ -21,6 +21,10 @@ spec:
         env:
         - name: GO_ENVIRONMENT
           value: #{GO_ENVIRONMENT}#
+        - name: Redis_HOST
+          value: redis
+        - name: REDIS_PORT
+          value: '6379'
         volumeMounts:
         - name: go
           mountPath: /var/opt/go
@@ -41,11 +45,7 @@ spec:
     - protocol: TCP
       port: 4444 
       targetPort: 4444
-  type: LoadBalancer
-  externalIPs:
-   - 10.3.20.211
-status:
-  loadBalancer: {}
+  type: NodePort
 ---
 apiVersion: v1
 kind: PersistentVolume
